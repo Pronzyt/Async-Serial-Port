@@ -1,28 +1,47 @@
 #ifndef OPTIONS_IPP
 #define OPTIONS_IPP
-#include <functional>
-#include <cstdint>
-#include <algorithm>
+
 #include "boost\asio.hpp"
-#include "boost\bind.hpp"
-#include "boost\timer.hpp"
-#include "boost\thread.hpp"
-#include "boost\detail\endian.hpp"
-#include "boost\icl\discrete_interval.hpp"
-#include <boost\core\noncopyable.hpp>
 #include "Options.h"
 
-template<typename Ty>
-class get_impl;
 
-template<>
-class get_impl<stop_bits>
-{
+class stop_bits::stop_bits_impl : public boost::asio::serial_port::stop_bits{
 public:
-	typedef  boost::asio::serial_port::stop_bits impl;
+	explicit stop_bits_impl(stop_bits_impl::type t)
+			:boost::asio::serial_port::stop_bits(t)
+		{};
+	~stop_bits_impl(){};
+};
+
+
+class parity::parity_impl : public boost::asio::serial_port::parity{
+public:
+	explicit parity_impl(parity_impl::type t)
+		:boost::asio::serial_port::parity(t)
+	{};
+	~parity_impl(){};
+};
+
+
+class flow_control::flow_control_impl : public boost::asio::serial_port::flow_control{
+public:
+	explicit flow_control_impl(flow_control_impl::type t)
+		:boost::asio::serial_port::flow_control(t)
+	{};
+	~flow_control_impl(){};
+};
+
+
+class baud_rate::baud_rate_impl : public boost::asio::serial_port::baud_rate{
+public:
+	explicit baud_rate_impl(unsigned int rate = 0)
+	: boost::asio::serial_port::baud_rate(rate)
+	{};
+	~baud_rate_impl(){};
 };
 
 #endif
+
 
 
 
