@@ -5,6 +5,7 @@
 #include <functional>
 #include <cstdint>
 #include <algorithm>
+#include <thread>
 #include "boost\asio.hpp"
 #include "boost\bind.hpp"
 #include "boost\timer.hpp"
@@ -13,7 +14,7 @@
 #include "boost\icl\discrete_interval.hpp"
 #include <boost\core\noncopyable.hpp>
 
-const unsigned int default_timeout = 5000;
+const unsigned int default_timeout = 5;
 
 class AsyncPort::AsyncPortImpl : boost::noncopyable {
 	using serial_port = boost::asio::serial_port;
@@ -46,7 +47,7 @@ public:
 	error_code get_option(Ty& option)
 	{
 		error_code error;
-		m_port.set_option(option.get_impl(), error);
+		m_port.get_option(option.get_impl(), error);
 		return error;
 	};
 

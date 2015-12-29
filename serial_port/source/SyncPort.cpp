@@ -1,4 +1,4 @@
-#include "SyncSimplePort.h"
+//#include "SyncSimplePort.h"
 
 
 ////completion condition is used to stop blocking read if timer fires
