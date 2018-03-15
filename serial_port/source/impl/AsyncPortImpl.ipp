@@ -105,7 +105,7 @@ AsyncPort::AsyncPortImpl::~AsyncPortImpl()
 };
 
 
-void AsyncPort::AsyncPortImpl::read_handler(deadline_timer& timer, ok_callback ok_func, error_callback error_func, const error_code& error, std::size_t bytes_transferred)
+void AsyncPort::AsyncPortImpl::read_handler(deadline_timer& timer, ok_callback ok_func, error_callback error_func, const error_code& error, size_t bytes_transferred)
 {
 	if (error)
 	{
@@ -118,7 +118,7 @@ void AsyncPort::AsyncPortImpl::read_handler(deadline_timer& timer, ok_callback o
 };
 
 
-void AsyncPort::AsyncPortImpl::write_handler(ok_callback ok_func, error_callback error_func, const error_code& error, std::size_t bytes_transferred)
+void AsyncPort::AsyncPortImpl::write_handler(ok_callback ok_func, error_callback error_func, const error_code& error, size_t bytes_transferred)
 {
 	if (error)
 	{

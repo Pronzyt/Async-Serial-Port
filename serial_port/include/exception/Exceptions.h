@@ -4,22 +4,23 @@
 #include <string>
 
 #ifdef SERIAL_PORT_DLL_EXPORTS
-#define DLL_API __declspec(dllexport) 
+#define SERIAL_PORT_DLL_API __declspec(dllexport) 
 #else
-#define SERIAL_PORT_DLL_DLL_API __declspec(dllimport) 
+#define SERIAL_PORT_DLL_API __declspec(dllimport) 
 #endif
 
 class port_error{
 public:
-	DLL_API std::string message();
+	SERIAL_PORT_DLL_API std::string message() const;
 
 	template<typename Ty>
-	DLL_API port_error(const Ty& error);
+	SERIAL_PORT_DLL_API port_error(const Ty& error);
+	SERIAL_PORT_DLL_API explicit operator bool() const;
 	port_error(){};
 private:
 	//port_error() = delete;
 	std::string m_msg;
-	int m_value;
+	bool m_error;
 };
 
 #endif

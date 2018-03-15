@@ -1,4 +1,3 @@
-
 #include "AsyncPort.h"
 #include "impl\AsyncPortImpl.ipp"
 #include "impl\Options.ipp"
