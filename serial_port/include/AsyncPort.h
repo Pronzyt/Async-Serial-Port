@@ -4,7 +4,7 @@
 #ifdef SERIAL_PORT_DLL_EXPORTS
 #define SERIAL_PORT_DLL_API  __declspec(dllexport) 
 #else
-#define SERIAL_PORT_DLL_DLL_API  __declspec(dllimport) 
+#define SERIAL_PORT_DLL_API  __declspec(dllimport) 
 #endif
 
 
