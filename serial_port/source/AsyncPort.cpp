@@ -29,16 +29,24 @@ void AsyncPort::close(port_error& error)
 void AsyncPort::read(void* read_buf, size_t size, ok_callback ok_func, error_callback error_func)
 {
 	pimpl->read(read_buf, size, 
-		[this, ok_func](){ return ok_func(this); }, 
-		[this, error_func](port_error error){return error_func(this, error); });
+		[this, ok_func](size_t bytes_transfered){ return ok_func(this, bytes_transfered); },
+		[this, error_func](port_error error, size_t bytes_transfered){return error_func(this, error, bytes_transfered); });
+};
+
+
+void AsyncPort::read_some(void* read_buf, size_t size, ok_callback ok_func, error_callback error_func)
+{
+	pimpl->read_some(read_buf, size,
+		[this, ok_func](size_t bytes_transfered) { return ok_func(this, bytes_transfered); },
+		[this, error_func](port_error error, size_t bytes_transfered) {return error_func(this, error, bytes_transfered); });
 };
 
 
 void AsyncPort::write(void const* write_buf, size_t size, ok_callback ok_func, error_callback error_func)
 {
 	pimpl->write(write_buf, size, 
-		[this, ok_func](){ return ok_func(this);}, 
-		[this, error_func](port_error error){return error_func(this, error);});
+		[this, ok_func](size_t bytes_transfered){ return ok_func(this, bytes_transfered);},
+		[this, error_func](port_error error, size_t bytes_transfered){return error_func(this, error, bytes_transfered);});
 };
 
 

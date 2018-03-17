@@ -15,8 +15,8 @@
 
 class AsyncPort{
 public:
-	typedef std::function<void(AsyncPort*)> ok_callback;
-	typedef std::function<void(AsyncPort*, port_error)> error_callback;
+	typedef std::function<void(AsyncPort*, size_t)> ok_callback;
+	typedef std::function<void(AsyncPort*, port_error, size_t)> error_callback;
 
 	SERIAL_PORT_DLL_API AsyncPort();
 	SERIAL_PORT_DLL_API ~AsyncPort();
@@ -26,6 +26,8 @@ public:
 	
 	SERIAL_PORT_DLL_API void write(void const* write_buf, size_t size, ok_callback ok_func, error_callback error_func);
 	SERIAL_PORT_DLL_API void read(void* read_buf, size_t size, ok_callback ok_func, error_callback error_func);
+	SERIAL_PORT_DLL_API void read_some(void* read_buf, size_t size, ok_callback ok_func, error_callback error_func);
+
 
 	SERIAL_PORT_DLL_API void set_stop_bits(const stop_bits& sb, port_error& error);
 	SERIAL_PORT_DLL_API void get_stop_bits(stop_bits& sb, port_error& error);
