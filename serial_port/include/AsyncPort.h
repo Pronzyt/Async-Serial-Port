@@ -28,7 +28,6 @@ public:
 	SERIAL_PORT_DLL_API void read(void* read_buf, size_t size, ok_callback ok_func, error_callback error_func);
 	SERIAL_PORT_DLL_API void read_some(void* read_buf, size_t size, ok_callback ok_func, error_callback error_func);
 
-
 	SERIAL_PORT_DLL_API void set_stop_bits(const stop_bits& sb, port_error& error);
 	SERIAL_PORT_DLL_API void get_stop_bits(stop_bits& sb, port_error& error);
 
@@ -40,6 +39,9 @@ public:
 
 	SERIAL_PORT_DLL_API void set_baud_rate(const baud_rate& br, port_error& error);
 	SERIAL_PORT_DLL_API void get_baud_rate(baud_rate& br, port_error& error);
+
+	SERIAL_PORT_DLL_API void set_character_size(const character_size& br, port_error& error);
+	SERIAL_PORT_DLL_API void get_character_size(character_size& br, port_error& error);
 
 	SERIAL_PORT_DLL_API void get_timeout(unsigned int& value) const;
 	SERIAL_PORT_DLL_API void set_timeout(const unsigned int& value);

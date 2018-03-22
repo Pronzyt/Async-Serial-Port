@@ -98,6 +98,18 @@ void AsyncPort::get_baud_rate(baud_rate& br, port_error& error)
 };
 
 
+void AsyncPort::set_character_size(const character_size& br, port_error& error)
+{
+	error = pimpl->set_option(br);
+};
+
+
+void AsyncPort::get_character_size(character_size& br, port_error& error)
+{
+	error = pimpl->get_option(br);
+};
+
+
 void AsyncPort::get_timeout(unsigned int& value) const
 {
 	value = pimpl->get_timeout();

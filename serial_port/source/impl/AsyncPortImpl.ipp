@@ -35,7 +35,7 @@ public:
 
 	void write(void const* write_buf, size_t size, ok_callback ok_func, error_callback error_func);
 	void read(void* read_buf, size_t size, ok_callback ok_func, error_callback error_func);
-	void read_until(void* read_buf, size_t size, std::string delim, ok_callback ok_func, error_callback error_func);
+	//void read_until(void* read_buf, size_t size, std::string delim, ok_callback ok_func, error_callback error_func);
 	void read_some(void* read_buf, size_t size, ok_callback ok_func, error_callback error_func);
 
 	template<typename Ty>
@@ -180,24 +180,24 @@ void AsyncPort::AsyncPortImpl::read_some(void* read_buf, size_t size, ok_callbac
 
 
 
-void AsyncPort::AsyncPortImpl::read_until(void* read_buf, size_t size, std::string delim, ok_callback ok_func, error_callback error_func)
-{
-	m_timer.expires_from_now(m_timeout);
-	m_timer.async_wait(boost::bind(&AsyncPortImpl::wait_handler, this,
-		boost::ref(m_port),
-		boost::asio::placeholders::error));
-
-	boost::asio::streambuf read_buffer(size);
-	boost::asio::async_read_until(m_port,
-		read_buffer,
-		delim,
-		boost::bind(&AsyncPortImpl::read_handler, this,
-			boost::ref(m_timer),
-			ok_func,
-			error_func,
-			boost::asio::placeholders::error,
-			boost::asio::placeholders::bytes_transferred));
-};
+//void AsyncPort::AsyncPortImpl::read_until(void* read_buf, size_t size, std::string delim, ok_callback ok_func, error_callback error_func)
+//{
+//	m_timer.expires_from_now(m_timeout);
+//	m_timer.async_wait(boost::bind(&AsyncPortImpl::wait_handler, this,
+//		boost::ref(m_port),
+//		boost::asio::placeholders::error));
+//
+//	boost::asio::streambuf read_buffer(size);
+//	boost::asio::async_read_until(m_port,
+//		read_buffer,
+//		delim,
+//		boost::bind(&AsyncPortImpl::read_handler, this,
+//			boost::ref(m_timer),
+//			ok_func,
+//			error_func,
+//			boost::asio::placeholders::error,
+//			boost::asio::placeholders::bytes_transferred));
+//};
 
 
 void AsyncPort::AsyncPortImpl::write(void const* write_buf, size_t size, ok_callback ok_func, error_callback error_func)
