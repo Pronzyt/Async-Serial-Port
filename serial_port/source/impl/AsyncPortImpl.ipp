@@ -42,7 +42,7 @@ public:
 	error_code set_option(const Ty& option)
 	{
 		error_code error;
-		m_port.set_option(option.get_impl(), error);
+		m_port.set_option(*option.pimpl, error);
 		return error;
 	};
 
@@ -50,7 +50,7 @@ public:
 	error_code get_option(Ty& option)
 	{
 		error_code error;
-		m_port.get_option(option.get_impl(), error);
+		m_port.get_option(*option.pimpl, error);
 		return error;
 	};
 

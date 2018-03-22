@@ -9,18 +9,6 @@ stop_bits::stop_bits(type t)
 {};
 
 
-stop_bits::stop_bits_impl& stop_bits::get_impl()
-{
-	return *pimpl;
-};
-
-
-const stop_bits::stop_bits_impl& stop_bits::get_impl() const
-{
-	return *pimpl;
-}
-
-
 stop_bits::~stop_bits()
 {
 	delete pimpl;
@@ -32,18 +20,6 @@ stop_bits::~stop_bits()
 parity::parity(type t)
 	:pimpl(new parity_impl(static_cast<parity_impl::type>(t)))
 {};
-
-
-parity::parity_impl& parity::get_impl()
-{
-	return *pimpl;
-};
-
-
-const parity::parity_impl& parity::get_impl() const
-{
-	return *pimpl;
-}
 
 
 parity::~parity()
@@ -59,18 +35,6 @@ flow_control::flow_control(type t)
 {};
 
 
-flow_control::flow_control_impl& flow_control::get_impl()
-{
-	return *pimpl;
-};
-
-
-const flow_control::flow_control_impl& flow_control::get_impl() const
-{
-	return *pimpl;
-}
-
-
 flow_control::~flow_control()
 {
 	delete pimpl;
@@ -83,20 +47,19 @@ baud_rate::baud_rate(unsigned int rate)
 {};
 
 
-baud_rate::baud_rate_impl& baud_rate::get_impl()
-{
-	return *pimpl;
-};
-
-
-const baud_rate::baud_rate_impl& baud_rate::get_impl() const
-{
-	return *pimpl;
-}
-
-
 baud_rate::~baud_rate()
 {
 	delete pimpl;
 };
 
+/*Character size*/
+
+character_size::character_size(unsigned int size)
+	:pimpl(new character_size_impl(size))
+{};
+
+
+character_size::~character_size()
+{
+	delete pimpl;
+};

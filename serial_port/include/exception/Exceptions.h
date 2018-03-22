@@ -11,12 +11,12 @@
 
 class port_error{
 public:
+	SERIAL_PORT_DLL_API port_error() {};
 	SERIAL_PORT_DLL_API std::string message() const;
 
 	template<typename Ty>
 	SERIAL_PORT_DLL_API port_error(const Ty& error);
 	SERIAL_PORT_DLL_API explicit operator bool() const;
-	port_error(){};
 private:
 	//port_error() = delete;
 	std::string m_msg;

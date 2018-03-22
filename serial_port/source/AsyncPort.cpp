@@ -103,6 +103,7 @@ void AsyncPort::get_timeout(unsigned int& value) const
 	value = pimpl->get_timeout();
 };
 
+
 void AsyncPort::set_timeout(const unsigned int& value)
 {
 	pimpl->set_timeout(value);

@@ -2,7 +2,6 @@
 #define OPTIONS_IPP
 
 #include "boost\asio.hpp"
-#include "options\Options.h"
 
 
 class stop_bits::stop_bits_impl : public boost::asio::serial_port::stop_bits{
@@ -38,6 +37,15 @@ public:
 	: boost::asio::serial_port::baud_rate(rate)
 	{};
 	~baud_rate_impl(){};
+};
+
+
+class character_size::character_size_impl : public boost::asio::serial_port::character_size {
+public:
+	explicit character_size_impl(unsigned int size = 0)
+		: boost::asio::serial_port::character_size(size)
+	{};
+	~character_size_impl() {};
 };
 
 #endif

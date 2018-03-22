@@ -17,10 +17,9 @@ public:
 	SERIAL_PORT_DLL_API type value();
 	SERIAL_PORT_DLL_API ~stop_bits();
 
-	SERIAL_PORT_DLL_API stop_bits_impl& get_impl();
-	SERIAL_PORT_DLL_API const stop_bits_impl& get_impl() const;
 private:
 	stop_bits_impl* pimpl;
+	friend class AsyncPort;
 };
 
 
@@ -32,10 +31,9 @@ public:
 	SERIAL_PORT_DLL_API type value() const;
 	SERIAL_PORT_DLL_API ~parity();
 
-	SERIAL_PORT_DLL_API parity_impl& get_impl();
-	SERIAL_PORT_DLL_API const parity_impl& get_impl() const;
 private:
 	parity_impl* pimpl;
+	friend class AsyncPort;
 };
 
 
@@ -47,10 +45,9 @@ public:
 	SERIAL_PORT_DLL_API type value() const;
 	SERIAL_PORT_DLL_API ~flow_control();
 
-	SERIAL_PORT_DLL_API flow_control_impl& get_impl();
-	SERIAL_PORT_DLL_API const flow_control_impl& get_impl() const;
 private:
 	flow_control_impl* pimpl;
+	friend class AsyncPort;
 };
 
 
@@ -61,10 +58,23 @@ public:
 	SERIAL_PORT_DLL_API unsigned int value() const;
 	SERIAL_PORT_DLL_API ~baud_rate();
 
-	SERIAL_PORT_DLL_API baud_rate_impl& get_impl();
-	SERIAL_PORT_DLL_API const baud_rate_impl& get_impl() const;
 private:
 	baud_rate_impl* pimpl;
+	friend class AsyncPort;
+};
+
+
+class character_size{
+	class character_size_impl;
+public:
+	SERIAL_PORT_DLL_API explicit character_size(unsigned int size = 0);
+	SERIAL_PORT_DLL_API unsigned int value() const;
+	SERIAL_PORT_DLL_API ~character_size();
+
+private:
+	character_size_impl* pimpl;
+	friend class AsyncPort;
+
 };
 
 #endif
